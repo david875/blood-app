@@ -1,6 +1,8 @@
 const form = document.getElementById('bpForm');
 const recordsList = document.getElementById('recordsList');
+const themeToggle = document.getElementById('themeToggle');
 const storageKey = 'blood-pressure-records';
+const themeKey = 'blood-pressure-theme';
 
 function loadRecords() {
   const saved = localStorage.getItem(storageKey);
@@ -16,6 +18,35 @@ function loadRecords() {
 
 function saveRecords(records) {
   localStorage.setItem(storageKey, JSON.stringify(records));
+}
+
+function getSavedTheme() {
+  try {
+    const savedTheme = localStorage.getItem(themeKey);
+    return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light';
+  } catch (error) {
+    console.error('Unable to read theme preference:', error);
+    return 'light';
+  }
+}
+
+function applyTheme(theme) {
+  const normalizedTheme = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', normalizedTheme);
+
+  try {
+    localStorage.setItem(themeKey, normalizedTheme);
+  } catch (error) {
+    console.error('Unable to save theme preference:', error);
+  }
+
+  if (themeToggle) {
+    themeToggle.textContent = normalizedTheme === 'dark' ? '☀️' : '🌙';
+    themeToggle.setAttribute(
+      'aria-label',
+      normalizedTheme === 'dark' ? '切換到淺色主題' : '切換到深色主題'
+    );
+  }
 }
 
 function formatMedication(value) {
@@ -69,6 +100,13 @@ function renderRecords() {
     .join('');
 }
 
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+}
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -112,4 +150,5 @@ recordsList.addEventListener('click', (event) => {
   renderRecords();
 });
 
+applyTheme(getSavedTheme());
 renderRecords();
