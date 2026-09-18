@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>血壓管理 App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <h1>血壓管理 App</h1>
+      </header>
+
+      <main class="content">
+        <section class="panel form-panel">
+          <h2>新增血壓紀錄</h2>
+          <form id="bpForm">
+            <div class="form-grid">
+              <label>
+                <span>收縮壓 (mmHg)</span>
+                <input id="systolic" type="number" min="30" max="250" required placeholder="例如 120" />
+              </label>
+
+              <label>
+                <span>舒張壓 (mmHg)</span>
+                <input id="diastolic" type="number" min="20" max="180" required placeholder="例如 80" />
+              </label>
+
+              <label>
+                <span>脈搏 (bpm)</span>
+                <input id="pulse" type="number" min="20" max="220" required placeholder="例如 72" />
+              </label>
+
+              <label>
+                <span>藥物治療</span>
+                <select id="medication" required>
+                  <option value="none">無</option>
+                  <option value="taken">已服藥</option>
+                  <option value="missed">未服藥</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="full-width">
+              <span>備註</span>
+              <textarea id="notes" rows="4" placeholder="例如：早上起床後測量、睡眠不足..."></textarea>
+            </label>
+
+            <button type="submit" class="primary-btn">新增紀錄</button>
+          </form>
+        </section>
+
+        <section class="panel list-panel">
+          <div class="list-header">
+            <h2>血壓紀錄列表</h2>
+          </div>
+          <ul id="recordsList" class="records-list"></ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

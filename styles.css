@@ -1,0 +1,288 @@
+:root {
+  --bg: #f3f7ff;
+  --panel: #ffffff;
+  --primary: #2d6cdf;
+  --primary-dark: #1d4fb5;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #dfe7f5;
+  --danger: #d93d3d;
+  --success: #2e8b57;
+  --shadow: 0 12px 30px rgba(45, 108, 223, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #eef4ff 0%, #f7fbff 100%);
+  color: var(--text);
+  padding: 20px;
+}
+
+.app-container {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 0 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: var(--primary-dark);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(223, 231, 245, 0.9);
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(31, 41, 55, 0.07);
+  padding: clamp(18px, 3vw, 24px);
+  backdrop-filter: blur(4px);
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+}
+
+label span {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fdfdff;
+  padding: 12px 14px;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.12);
+}
+
+.full-width {
+  margin-top: 18px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.primary-btn {
+  margin-top: 22px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(45, 108, 223, 0.2);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.records-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.record-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #f9fbff;
+  padding: 16px;
+}
+
+.record-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.record-time {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.record-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 6px 0 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #ebf3ff;
+  color: var(--primary-dark);
+}
+
+.medication-tag {
+  background: #edf8f2;
+  color: var(--success);
+}
+
+.record-notes {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.empty-state {
+  padding: 18px 12px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  text-align: center;
+  color: var(--muted);
+  background: #fafcff;
+}
+
+.record-action {
+  border: none;
+  background: transparent;
+  color: var(--danger);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  .app-container {
+    margin: 8px auto 20px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .panel {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .record-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .record-main {
+    gap: 8px;
+  }
+
+  .primary-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-header {
+    margin-bottom: 18px;
+  }
+
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .panel h2 {
+    font-size: 1.3rem;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 11px 12px;
+  }
+
+  .record-item {
+    padding: 14px 12px;
+  }
+
+  .record-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .badge {
+    font-size: 0.72rem;
+  }
+}
